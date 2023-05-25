@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Caregivers</title>
+    </head>
+    <body>
+        <div class="container">
+            <!--for searching caregiver by first name-->
+            <input type="text" (keypress)="filterByFirstname(n)" [(ngModel)]="n" class="filterF" id="filterF" name="filterF" 
+                placeholder="enter firstname to search caregiver">
+            <!--for searching caregiver by last name-->
+            <input type="text" (keypress)="filterByLastname(m)" [(ngModel)]="m" class="filterL" id="filterL" name="filterL" 
+                placeholder="enter lastname to search caregiver">
+            <!--for searching caregiver by username-->
+            <input type="text" (keypress)="filterByUsername(z)" [(ngModel)]="z" class="filterU" id="filterU" name="filterU" 
+                placeholder="enter username to search caregiver">
+            <!--if table is empty it'll show content in else block-->
+            <table class="table table-striped" *ngIf="cglist.length;else elseBlock">
+                <thead>
+                    <tr>
+                        <th scope="col">Sno</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let f of cglist;;let i=index">
+                    <!-- <tr *ngFor="let f of filteredList;let i=index"> -->
+                        <td>{{i+1}}</td>
+                        <td>{{f.fastname}}</td>
+                        <td>{{f.lastname}}</td>
+                        <td>{{f.number}}</td>
+                        <td><button class="btn btn-dark" (click)="assignC()">Assign</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--else block-->
+            <ng-template #elseBlock><h4>no caregiver available</h4></ng-template>
+        </div>
+        <!--button-->
+        <br><button class="btn btn-info" style="margin-left: 650px; width: 15%;" (click)="back()">Back</button>
+    </body>
+</html>

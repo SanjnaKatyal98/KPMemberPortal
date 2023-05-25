@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Login Form</title>
+    </head>
+    <body>
+        <div style="width: 100%;">
+            <div style="width: 50%; height: 100px; float: left; margin: 10px;"> 
+                <img src="..\assets\images\3.jpg"> 
+            </div>
+            <div style="margin-left: 50%; height: 100px;">
+                <h1>Login To Continue</h1>
+            </div>
+            <div style="margin-left: 50%; height: 100%; box-shadow: 10px 10px 5px aqua; border: 1px solid aqua;">
+                <form autocomplete="false" id="loginForm" name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="margin: 15px;"><!--login form is reactive form-->
+                    <!--data input for username-->
+                    Enter Username: <input class="form-control" type="text" name="username" id="username" [(ngModel)]="credentials.username"
+                        formControlName="username" required minlength="3" style="width: 45%;margin-left: 30%;"><br>
+                    <!--for errors-->
+                    <div class="error" *ngIf="username">
+                        <div *ngIf="!username.valid && (username.dirty||username.touched)">
+                            <div [hidden]="!username.errors?.['required']"> Username is required</div>
+                        </div>
+                        <div *ngIf="username.errors?.['minlength']"> Minimum number of chars required is 3</div>
+                    </div><br>
+                    <!--data input for passwrd-->
+                    Enter Password: <input class="form-control" type="password" name="password" id="password" [(ngModel)]="credentials.password"
+                        formControlName="password" required minlength="5" style="width: 45%;margin-left: 30%;"><br>
+                    <!--for errors-->
+                    <div *ngIf="password" class="error">
+                        <div *ngIf="!password.valid && (password.dirty||password.touched)">
+                            <div [hidden]="!password.errors?.['required']"> Password is required</div>
+                        </div>
+                        <div *ngIf="password.errors?.['minlength']"> Minimum number of chars required is 5</div>
+                    </div><br>
+                    <!--buttons-->
+                    <button type="button" class="btn btn-success" [disabled]="!loginForm.valid" style="width: 40%;" 
+                        (click)="onSubmit()">Submit</button><br> 
+                    <button type="button" class="btn btn-primary" (click)="reset()">Clear</button>
+                    <button class="btn btn-dark" type="submit" (click)="back()">Back</button>
+                </form>
+                <p style="text-align: center;">Have not signed up yet? <button class="btn btn-light" 
+                    (click)="reg()">Click Here!</button></p>
+            </div>
+        </div>
+    </body>
+</html>
