@@ -1,0 +1,21 @@
+button{
+    margin: 10px;
+    padding: 7px;
+    width: 25%;
+}
+.error{
+    color: red;
+}
+h1{
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    color: deepskyblue;
+}
+img{
+    height: 650px;
+    width: 800px;
+}
+form{
+    text-align: center;
+}
