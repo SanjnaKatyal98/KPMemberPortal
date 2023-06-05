@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Assign Caregiver</title>
+    </head>
+    <body>
+        <h1>Enter Details</h1><!--heading-->
+        <div class="container">
+            <form #acgForm="ngForm" (ngSubmit)="onSubmit(acgForm)" style="margin: 15px;"><!--assign caregiver form is template form-->
+                <!--data input-->
+                <label for="uid"> Enter User ID: </label>
+                <input type="text" name="uid" id="uid" #uid="ngModel" ngModel required minlength="1" placeholder="enter user id"><br>
+                <!--for error-->
+                <div *ngIf="!uid?.valid && (uid?.dirty || uid?.touched)" class="error">
+                    <div *ngIf="uid.errors?.['required']">
+                        User ID is required
+                    </div>
+                </div><br>
+                <label for="cid"> Enter Caregiver ID: </label>
+                <input type="text" name="cid" id="cid" #cid="ngModel" ngModel required minlength="1" placeholder="enter caregiver id"><br>
+                <div *ngIf="!cid?.valid && (cid?.dirty || cid?.touched)" class="error">
+                    <div *ngIf="cid.errors?.['required']">
+                        Caregiver ID is required
+                    </div>
+                </div><br>
+                <label for="addr"> Address: </label> <br>
+                <textarea id="addr" #addr="ngModel" rows="8.5" cols="33" ngModel placeholder="enter user address"></textarea><br><br>
+                <!--buttons-->
+                <button type="button" class="btn btn-success" [disabled]="!acgForm.valid" style="width: 30%;" (click)="onSubmit(acgForm)">Submit</button><br>
+                <button type="button" class="btn btn-primary" (click)="reset(acgForm)">Clear</button>
+                <button class="btn btn-dark" type="submit" (click)="back()">Back</button>
+            </form>
+        </div>
+    </body>
+</html>
